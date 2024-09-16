@@ -7,6 +7,18 @@ export class UserController {
         res.status(200).json({ users_found: users })
     }
 
+    static async getByEmail(req, res) {
+        const user = await User.findUnique({
+            where: {
+                email: req.params.email,
+            }
+        })
+        if (!!user) {
+            return res.status(200).json({ user_password: user.senha })
+        }
+        res.status(404).json({ message: "User not found" })
+    }
+
     static async post(req, res) {
         const postedUser = await User.create({
             data: {

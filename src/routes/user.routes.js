@@ -4,6 +4,7 @@ import { UserController } from '../controllers/user.controller.js'
 const router = express.Router()
 
 router.get('/', UserController.getAll)
+router.get('/:email', UserController.getByEmail)
 router.post('/', UserController.post)
 router.delete('/:id', UserController.delete)
 router.patch('/:id', UserController.updateUser)
